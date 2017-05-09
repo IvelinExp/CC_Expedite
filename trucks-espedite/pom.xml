@@ -140,11 +140,11 @@
 				<configuration>
 					<filesets>
 						<fileset>
-							<directory>${basedir}/src/main/public/VAADIN/widgetsets</directory>
+							<directory>${basedir}/src/main/java/public/VAADIN/widgetsets</directory>
 						</fileset>
 					</filesets>
 					<fileset>
-						<directory>src/main/resources/VAADIN/themes/valo/</directory>
+						<directory>src/main/java/public/VAADIN/themes/valo/</directory>
 						<includes>
 							<include>*.css</include>
 						</includes>
