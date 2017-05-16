@@ -1,6 +1,7 @@
 package org.cc.exp.security.ui.signin;
 
 import org.cc.exp.security.ui.signin.SignInPresenter.SignInView;
+import org.eclipse.jetty.util.log.Log;
 import org.vaadin.spring.UIScope;
 import org.vaadin.spring.VaadinComponent;
 import org.vaadin.spring.mvp.view.AbstractMvpView;
@@ -110,6 +111,7 @@ public class SignInViewImpl extends AbstractMvpView implements SignInView, Click
 		 */
 		if (event.getButton() == btnLogin) {
 			
+			Log.warn("Logging in with user" + username.getValue());
 			mvpPresenterHandlers.doSignIn(username.getValue(), password.getValue(), rememberMe.getValue());						
 		}				
 		

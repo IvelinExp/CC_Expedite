@@ -32,6 +32,7 @@ org\cc\exp\security\ui\security\HttpResponseFactory.class
 org\cc\exp\security\ui\security\VaadinPersistentTokenBasedRememberMeServices.class
 org\cc\exp\security\ui\signin\SignInPresenter.class
 org\cc\exp\security\sql\exceptions\UsernameAlreadyInUseException.class
+org\cc\exp\security\sql\setup\TasnNBugsRepository.class
 org\cc\exp\security\ui\navigation\VaadinRedirectObject.class
 org\cc\exp\security\ui\admin\AdminPresenter$AdminView.class
 org\cc\exp\security\sql\setup\AccountRepository.class
@@ -40,6 +41,7 @@ org\cc\exp\security\ui\MainUI.class
 org\cc\exp\security\Application.class
 org\cc\exp\security\ui\security\SecuredNavigator.class
 org\cc\exp\security\ui\security\SpringApplicationContext.class
+org\cc\exp\security\sql\setup\TasksNBug.class
 org\cc\exp\security\ui\signin\SignInPresenter$SignInView.class
 org\cc\exp\security\service\DummyServiceImpl.class
 org\cc\exp\security\CustomVaadinServlet.class
@@ -47,4 +49,5 @@ org\cc\exp\security\ui\admin\HiddenAdminViewImpl.class
 org\cc\exp\security\CustomVaadinServlet$1$1.class
 org\cc\exp\security\ui\security\AccessDeniedEvent.class
 org\cc\exp\security\ui\MainLayout.class
+org\cc\exp\security\OracleConfiguration.class
 org\cc\exp\security\sql\setup\JdbcUserDetailsService.class

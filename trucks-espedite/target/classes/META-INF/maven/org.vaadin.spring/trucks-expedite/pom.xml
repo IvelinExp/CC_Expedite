@@ -49,6 +49,11 @@
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0.1</version>
+        </dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
@@ -117,6 +122,7 @@
 			<artifactId>jetty-jndi</artifactId>
 			<version>8.1.15.v20140411</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -140,11 +146,11 @@
 				<configuration>
 					<filesets>
 						<fileset>
-							<directory>${basedir}/src/main/public/VAADIN/widgetsets</directory>
+							<directory>${basedir}/src/main/java/public/VAADIN/widgetsets</directory>
 						</fileset>
 					</filesets>
 					<fileset>
-						<directory>src/main/resources/VAADIN/themes/valo/</directory>
+						<directory>src/main/java/public/VAADIN/themes/valo/</directory>
 						<includes>
 							<include>*.css</include>
 						</includes>

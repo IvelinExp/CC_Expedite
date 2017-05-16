@@ -1,5 +1,7 @@
 package org.cc.exp.security;
 
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
 import org.cc.exp.security.sql.setup.JdbcAccountRepository;
@@ -22,6 +24,8 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.vaadin.spring.servlet.SpringAwareVaadinServlet;
+
+import oracle.jdbc.pool.OracleDataSource;
 
 @Configuration
 @EnableAutoConfiguration
@@ -85,23 +89,6 @@ public class Application  {
 		return registrationBean;		
 	}
 	
-	
-	@Bean(destroyMethod = "shutdown")
-	public DataSource dataSource() {
-		EmbeddedDatabaseFactory factory = new EmbeddedDatabaseFactory();
-		factory.setDatabaseName("Expedite_H2");
-		factory.setDatabaseType(EmbeddedDatabaseType.H2);
-		factory.setDatabasePopulator(databasePopulator());
-		return factory.getDatabase();
-	}
-	
-	private DatabasePopulator databasePopulator() {
-		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();		
-		populator.addScript(new ClassPathResource("Account.sql", JdbcAccountRepository.class));
-		populator.addScript(new ClassPathResource("data.sql", JdbcAccountRepository.class));
-		populator.addScript(new ClassPathResource("rememberme.sql", JdbcAccountRepository.class));
-		return populator;
-	}
 	
 	
 }
