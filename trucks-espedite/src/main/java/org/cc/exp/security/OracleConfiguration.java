@@ -10,8 +10,8 @@ import javax.sql.DataSource;
 import javax.validation.constraints.NotNull;
 import java.sql.SQLException;
 
-@Configuration
-@ConfigurationProperties("oracle")
+//@Configuration
+//@ConfigurationProperties("oracle")
 public class OracleConfiguration {
 	@NotNull
 	private String username;
