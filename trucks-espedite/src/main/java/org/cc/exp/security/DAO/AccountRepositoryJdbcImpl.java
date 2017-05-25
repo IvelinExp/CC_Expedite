@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cc.exp.security.sql.setup;
+package org.cc.exp.security.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.cc.exp.domain.Account;
 import org.cc.exp.security.sql.exceptions.UsernameAlreadyInUseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -28,14 +29,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class JdbcAccountRepository implements AccountRepository {
+public class AccountRepositoryJdbcImpl implements AccountRepository {
 
 	private final JdbcTemplate jdbcTemplate;
 
 	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public JdbcAccountRepository(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
+	public AccountRepositoryJdbcImpl(JdbcTemplate jdbcTemplate, PasswordEncoder passwordEncoder) {
 		this.jdbcTemplate = jdbcTemplate;
 		this.passwordEncoder = passwordEncoder;
 	}
@@ -53,6 +54,20 @@ public class JdbcAccountRepository implements AccountRepository {
 	}
 
 	public Account findAccountByUsername(String username) {
+		
+	/**
+	 * 	This is how it goes by the book - needs REDO  here. 
+	 * 
+	 * 	CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<MediaObject> criteriaQuery =
+		criteriaBuilder.createQuery(Account.class);
+		Root< Account > root = criteriaQuery.from(Account.class);
+		Path<String> path = root.<String>get("username");
+		criteriaQuery.where(criteriaBuilder.equal(path, username));
+		return entityManager.createQuery(criteriaQuery).getResultList();  **/
+		
+		
+		
 		return jdbcTemplate.queryForObject("select username, password, firstName, lastName, role from Account where username = ?",
 				new RowMapper<Account>() {
 					public Account mapRow(ResultSet rs, int rowNum) throws SQLException {

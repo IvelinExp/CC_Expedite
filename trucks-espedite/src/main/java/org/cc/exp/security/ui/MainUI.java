@@ -16,7 +16,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
 @VaadinUI
-@Title("Vaadin4Spring Security Demo")
+@Title("Truck-espedite")
 @Theme("valo")
 @SuppressWarnings("serial")
 public class MainUI extends UI {

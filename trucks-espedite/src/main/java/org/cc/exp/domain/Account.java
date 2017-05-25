@@ -1,4 +1,4 @@
-package org.cc.exp.security.sql.setup;
+package org.cc.exp.domain;
 
 import javax.validation.constraints.Size;
 

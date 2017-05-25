@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cc.exp.security.sql.setup;
+package org.cc.exp.security.DAO;
 
+import org.cc.exp.domain.Account;
 import org.cc.exp.security.sql.exceptions.UsernameAlreadyInUseException;
 
 public interface AccountRepository {

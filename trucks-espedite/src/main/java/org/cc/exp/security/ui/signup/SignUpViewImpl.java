@@ -1,6 +1,6 @@
 package org.cc.exp.security.ui.signup;
 
-import org.cc.exp.security.sql.setup.Account;
+import org.cc.exp.domain.Account;
 import org.cc.exp.security.ui.signup.SignUpPresenter.SignUpView;
 import org.vaadin.spring.UIScope;
 import org.vaadin.spring.VaadinComponent;

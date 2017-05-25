@@ -1,11 +1,17 @@
 package org.cc.exp.security.sql.setup;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class TasksNBug {
+public class TasksNBug implements Serializable {
+
+	/**
+	 * Generated Serial
+	 */
+	private static final long serialVersionUID = 8758545704078629693L;
 
 	private String parent;
 
@@ -15,7 +21,7 @@ public class TasksNBug {
 	@NotEmpty(message = "Id is required")
 	private Integer id;
 
-	@NotEmpty(message = "TYPE is required")
+	@NotEmpty(message = "Summary is required")
 	private String summary;
 
 	@NotEmpty(message = "OWNED_BY is required")

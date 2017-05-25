@@ -111,7 +111,6 @@ public class SignInViewImpl extends AbstractMvpView implements SignInView, Click
 		 */
 		if (event.getButton() == btnLogin) {
 			
-			Log.warn("Logging in with user" + username.getValue());
 			mvpPresenterHandlers.doSignIn(username.getValue(), password.getValue(), rememberMe.getValue());						
 		}				
 		

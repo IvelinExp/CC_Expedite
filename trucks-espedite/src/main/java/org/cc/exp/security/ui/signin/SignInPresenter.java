@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.cc.exp.security.ui.UserSignedInEvent;
 import org.cc.exp.security.ui.ViewToken;
 import org.cc.exp.security.ui.security.HttpRequestResponseService;
+import org.eclipse.jetty.util.log.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,26 +30,28 @@ import com.vaadin.ui.UI;
 
 @SuppressWarnings("serial")
 @UIScope
-@VaadinView(name=ViewToken.SIGNIN)
-public class SignInPresenter extends AbstractMvpPresenterView<SignInPresenter.SignInView> implements SignInPresenterHandlers {
-	
+@VaadinView(name = ViewToken.SIGNIN)
+public class SignInPresenter extends AbstractMvpPresenterView<SignInPresenter.SignInView>
+		implements SignInPresenterHandlers {
+
 	public interface SignInView extends MvpView, MvpHasPresenterHandlers<SignInPresenterHandlers> {
 		void init();
+
 		void setErrorMessage(String errorMessage);
 	}
-	
+
 	@Autowired
 	Security security;
-	
+
 	@Autowired
 	AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	RememberMeServices rememberMeServices;
-	
+
 	@Autowired
 	HttpRequestResponseService httpRequestResponseService;
-	
+
 	@Autowired
 	public SignInPresenter(SignInView view, EventBus eventBus) {
 		super(view, eventBus);
@@ -57,47 +60,44 @@ public class SignInPresenter extends AbstractMvpPresenterView<SignInPresenter.Si
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		getView().init();		
+		getView().init();
 	}
 
 	@Override
 	public void doSignIn(String username, String password, boolean rememberMe) {
-		try {			
-			
+		try {
+
 			/*
 			 * security.login(username, password);
 			 * 
-			 */			
+			 */
 			final SecurityContext securityContext = SecurityContextHolder.getContext();
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
 
-			final Authentication authentication = authenticationManager.authenticate(token);	  
-	        securityContext.setAuthentication(authentication);
-	        	                	        
-	        if (rememberMe) {
-	        	HttpServletRequest request = httpRequestResponseService.getCurrentRequest();
-		        HttpServletResponse response = httpRequestResponseService.getCurrentResponse();		        
-		        request.setAttribute(AbstractRememberMeServices.DEFAULT_PARAMETER, rememberMe);
-		        rememberMeServices.loginSuccess(request, response, authentication);	        	
-	        } 
-			
-	        
-	        
+			final Authentication authentication = authenticationManager.authenticate(token);
+
+			securityContext.setAuthentication(authentication);
+
+			if (rememberMe) {
+				HttpServletRequest request = httpRequestResponseService.getCurrentRequest();
+				HttpServletResponse response = httpRequestResponseService.getCurrentResponse();
+				request.setAttribute(AbstractRememberMeServices.DEFAULT_PARAMETER, rememberMe);
+				rememberMeServices.loginSuccess(request, response, authentication);
+			}
+
 			getEventBus().publish(EventScope.UI, this, new UserSignedInEvent());
-			
-			//Redirect to UserHome or Admin Home
+
+			// Redirect to UserHome or Admin Home
 			if (security.hasAuthority("ROLE_USER")) {
 				UI.getCurrent().getNavigator().navigateTo(ViewToken.USER);
 			} else {
 				UI.getCurrent().getNavigator().navigateTo(ViewToken.ADMIN);
-			}		
-								
+			}
+
 		} catch (AuthenticationException e) {
 			getView().setErrorMessage(e.getMessage());
 		}
-		
-	}
 
-	
+	}
 
 }

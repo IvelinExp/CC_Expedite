@@ -1,5 +1,6 @@
-package org.cc.exp.security.sql.setup;
+package org.cc.exp.security.DAO;
 
+import org.cc.exp.domain.Account;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class JdbcUserDetailsService implements UserDetailsService {
+@Service("userDetailsService")
+public class UserDetailsServiceJdbcImpl implements UserDetailsService {
 	
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 

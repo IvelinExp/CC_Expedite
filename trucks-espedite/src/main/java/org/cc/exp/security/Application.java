@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import org.cc.exp.security.sql.setup.JdbcAccountRepository;
+import org.cc.exp.security.DAO.AccountRepositoryJdbcImpl;
 import org.cc.exp.security.ui.security.HttpResponseFactory;
 import org.cc.exp.security.ui.security.HttpResponseFilter;
 import org.cc.exp.security.ui.security.SpringApplicationContext;
